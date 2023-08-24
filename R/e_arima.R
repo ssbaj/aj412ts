@@ -3,8 +3,7 @@
 e_arima<-function(explaining=0){
 if(explaining==0) {
 cat(" library(readxl);library(forecast);library(strucchange);library(changepoint);library(r412ts) ", '\n')
-cat(" df<-read_excel('Eviews2_2.xlsx') ", '\n')
-cat(" 또는, df<-eviews2_2 # aj412ts의 내장데이터 ", '\n')
+cat(" df<-read_excel('GDPdata.xlsx') ", '\n')
 cat(" gdp_sa<-ts(df$gdp_sa, start=c(1960,1), frequency=4) ", '\n')
 cat(" 참고: gdp_sa2<-window(gdp_sa, start=c(1980,1), end=c(2010,12), frequency=4) ", '\n')
 cat(" plot(gdp_sa) ", '\n')
