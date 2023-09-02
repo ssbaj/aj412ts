@@ -2,12 +2,12 @@
 
 e_hpfilter<-function(explaining=0){
 if(explaining==0) {
-cat("library(ecos); library(dplyr); library(lubridate)", '\n')
-cat("my_key<-c('PDAG09WXHMB9IJ1RNMGX')", '\n')
-cat("sdate <- as.Date('1960-01-01')", '\n')
-cat("edate <-as.Date('2023-07-31')", '\n')
+cat("library(ecos); library(xts); library(quantmod); library(lubridate)  ; library(dplyr); library(mFilter)", '\n')
+cat("ecos.setKey(api_key = 'PDAG09WXHMB9IJ1RNMGX') ", '\n')
+cat("sdate <- as.Date('2018-01-01') ", '\n')
+cat("edate <- as.Date('2023-07-31') ", '\n')
 cat("  ", '\n')
-cat("gdp<-statSearch(api_key=my_key, stat_code='200Y004', item_code1='1400', cycle='Q')", '\n')
+cat("gdp<-statSearch(stat_code='200Y004', item_code1='1400', cycle='Q')", '\n')
 cat("gdp<-gdp%>%select(time, data_value)%>%mutate(time=ym(time))", '\n')
 cat("names(gdp)<-c('date', 'gdpdata')", '\n')
 cat("rownames(gdp)<-c() ## rownames를 1,2,3,4 ... 순으로 만드는 명령문", '\n')
