@@ -1,10 +1,10 @@
 Areport<-function(Re2XX){
 
 coef<-Re2XX$coef
-se_coef<-(sqrt(diag(Re2XX$var.coef)))
+s.e<-(sqrt(diag(Re2XX$var.coef)))
 
 m<-length(coef)
-n<-length(se_coef)
+n<-length(s.e)
 
 r<-c()
 if(m !=n ) {
@@ -29,14 +29,15 @@ if(Re2XX[9]$call[1]=="arimax()") {n_calc<-( length(Re2XX$residuals)-Re2XX$arma[6
 
 df_value <- n_calc -length(coef)
 
-t_val <- coef/se_coef
+t_val <- coef/s.e
 p_val <-  round( ( 1- pt( abs( t_val ) , df_value ) ), 4)
 
 options(scipen=100)
 coeff<-as.data.frame(coef)
+s.e<-as.data.frame(s.e)
 t_value<-as.data.frame(t_val)
 p_value<-as.data.frame(p_val)
-temp<-cbind(coef, t_val, p_val)
+temp<-cbind(coef, s.e , t_val, p_val)
 
 cat('\n')
 if(Re2XX[9]$call[1]=="auto.arima()" ) {print(Re2XX[9]$call[1:2]) } else { print(Re2XX[9]$call) }
