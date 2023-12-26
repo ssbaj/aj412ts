@@ -1,7 +1,7 @@
 mkdlog <- function(name_dataset, select_columns) {
   
   if (base::missing(name_dataset)) {
-	  return( cat("  df<-mkdlogx(df, 2)  *NOTE: making differenced log-variable, the 2nd column of dataset ", '\n') )
+	  return( cat("  df<-mkdlog(df, 2)  *NOTE: making differenced log-variable, the 2nd column of dataset ", '\n') )
 	}
   
   tmp<-(name_dataset[select_columns])
