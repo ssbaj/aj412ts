@@ -4,7 +4,7 @@ e_ts<-function(explaining=0){
 if(explaining==0) {
 cat("    ", '\n')
 cat("# create Time Series Objects ------------- ", '\n')
-cat("  gold <- ts(log(dat$gold),start=c(1993,11),frequency=12)  ", '\n')
+cat("  gold <- ts(log(dat$gold),start=c(1993,1),frequency=12)  ", '\n')
 cat("    ", '\n')
 cat("# xts의 apply.quarterly() 사용 ------------- ", '\n')
 cat(" \033[1;32m 자료1<-xts(전산업생산지수$ind_m, order.by=전산업생산지수$date)   \033[0m ", '\n')
