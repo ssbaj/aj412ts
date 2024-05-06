@@ -21,7 +21,7 @@ library(dsa)
 tmp <- xts2ts(xtsdata) 
 
 경제성장률(분기별 gdp) -------------
-전년동기대비_GDP성장률 <- (gdp / stats::lag(gdp, 4) -1 )*100 
+전년동기대비_GDP성장률 <- (gdp / dplyr::lag(gdp, 4) -1 )*100 
 
 
 }

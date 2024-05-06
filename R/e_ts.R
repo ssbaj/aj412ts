@@ -15,7 +15,7 @@ cat("  library(dsa)  ", '\n')
 cat("  tmp <- xts2ts(xtsdata)  ", '\n')
 cat("    ", '\n')
 cat("# 경제성장률(분기별 gdp) ------------- ", '\n')
-cat(" \033[1;32m 전년동기대비_GDP성장률 <- (gdp / stats::lag(gdp, 4) -1 )*100    \033[0m ", '\n')
+cat(" \033[1;32m 전년동기대비_GDP성장률 <- (gdp / dplyr::lag(gdp, 4) -1 )*100    \033[0m ", '\n')
 cat("    ", '\n')
 
 }}
