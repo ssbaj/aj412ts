@@ -9,7 +9,7 @@ How to make time series data
 }
 \examples{
 
-"# create Time Series Objects -------------
+# create Time Series Objects -------------
 gold <- ts(log(dat$gold),start=c(1993,11),frequency=12)
 
 xts의 apply.quarterly() 사용 -------------
