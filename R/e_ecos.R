@@ -27,7 +27,7 @@ cat(" Call금리 <- statSearch(stat_code='721Y001', item_code1='1020000', cycle=
 cat(" 월별소비자물가지수 <- statSearch(stat_code='901Y009',item_code1='0',cycle='M') ", '\n')
 cat(" 전년동기대비인플레이션 <- 100*(tscpi_m/stats::lag(tscpi_m, 12) -1 ) ", '\n')
 cat(" M2평잔 <- statSearch(stat_code='101Y003', item_code1='BBHS00', item_code2='2', cycle='M') ", '\n')
-cat(" 경상수지 <- statSearch(stat_code='301Y013', item_code1='000000', item_code2='2', cycle='M') ", '\n')
+cat(" 경상수지 <- statSearch(stat_code='902Y009', item_code1='KR', cycle='Q') ", '\n')
 cat(" 소비자물가지수 <- statSearch(stat_code='901Y009', item_code1='0', cycle='M')  ", '\n')
 cat(" 전산업생산지수 <- statSearch(stat_code='901Y033', item_code1='A00', item_code2='2', cycle='M') ", '\n')
 cat("  ", '\n')
