@@ -1,6 +1,5 @@
 simple_ecos<-function(ecos_dataset, start_year, cycle=1 ){
 
-
 if (base::missing(ecos_dataset)) {
 	  cat("  Data는 순수한 numeric이고 ts지정은 않함 ", '\n')
       cat("  ECOS자료에서 원하는 연도부터 자료 추출 / YoY첨부 ", '\n')
@@ -140,6 +139,15 @@ if(cycle!=1) {
   df<-df%>%relocate(DATE, .before='time')
   }
 
-return(df)
+if(cycle==1) {
+  df$DATE<-NA
+  for (i in 1:n){
+    df$DATE[i] <- paste0(df$time[i],'-12-31', sep='')
+   }
+   df<-df%>%relocate(DATE, .before='time')
+   df$DATE<-as.Date(df$DATE)
+   }
+
+   return(df)
 }
 
