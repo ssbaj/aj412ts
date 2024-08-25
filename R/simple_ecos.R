@@ -6,7 +6,7 @@ if (base::missing(ecos_dataset)) {
       cat("  ECOS자료에서 원하는 연도부터 자료 추출 / YoY첨부 ", '\n')
 	  cat("  2018년 부터 시작하는 자료만 남길 경우 ", '\n')
 	  cat("  Monthly/Quarterly/Yearly자료는 자동인식함", '\n')
-	  return( cat("  Adata<-eocs_purenumber(gdp, '2018') ", '\n') )
+	  return( cat("  Adata<-simple_ecos(gdp, '2018') ", '\n') )
 	}
 
 ## mkdate_series()함수 -------------------------
@@ -135,8 +135,10 @@ df<-cbind(df, yoy, yoy_pct)
 
 start_year<-as.numeric(start_year)
 
-df<-mkdate_series(df, start_year, 1, cycle )
-df<-df%>%relocate(DATE, .before='time')
+if(cycle!=1) {
+  df<-mkdate_series(df, start_year, 1, cycle )
+  df<-df%>%relocate(DATE, .before='time')
+  }
 
 return(df)
 }
