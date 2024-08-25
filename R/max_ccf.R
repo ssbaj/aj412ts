@@ -6,7 +6,8 @@
 max_ccf=function(s_x, s_y){
   
    if (base::missing(s_x)) {
-	    cat("  max_ccf(x, y))", '\n')
+	    cat("  max_ccf(x, y)", '\n')
+		cat("  * x와 y는 numeric이면 작동함. ts로 지정할 필요 없음", '\n')
 		return(cat("  cor:0.84/lag:-4 = 상관계수는 0.84이고 x가 y보다 4일 뒤쳐져 있다 "))  }
 
   options(digits=3)

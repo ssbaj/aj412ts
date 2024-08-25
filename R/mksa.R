@@ -6,7 +6,21 @@ if (base::missing(df)) {
    cat(" df<-mksa(df, 6, 2008, 1, 12) ", '\n')
    return( cat("  df: dataset, 6=nth column number, 2008=year, 1=start month, 12=frequency ", '\n') ) }
 
-cat('Required Library: dplyr/seasonal/forecast', '\n')
+if (!require(dplyr)) {
+    cat('Installing dplyr package','\n')
+	install.packages("dplyr")
+  }
+
+if (!require(seasonal)) {
+    cat('Installing seasonal package','\n')
+    install.packages("seasonal")
+  }
+
+if (!require(forecast)) {
+    cat('Installing forecast package','\n')
+    install.packages("forecast")
+  }
+
 suppressPackageStartupMessages(library("dplyr"))
 df<-as.data.frame(df)
 ncolums<-ncol(df)
