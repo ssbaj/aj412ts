@@ -1,4 +1,4 @@
-ecos_simple<-function(ecos_dataset, start_year, cycle=1 ){
+simple_ecos<-function(ecos_dataset, start_year, cycle=1 ){
 
 
 if (base::missing(ecos_dataset)) {
