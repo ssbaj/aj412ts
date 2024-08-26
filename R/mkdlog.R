@@ -1,6 +1,7 @@
 mkdlog <- function(name_dataset, select_columns) {
   
   if (base::missing(name_dataset)) {
+	  cat("Data set is shoul be data.frame type. After making it as data.frame format, run the command.", '\n')
 	  return( cat("  df<-mkdlog(df, 'variable name')  *NOTE: making differenced log-variable, the 2nd column of dataset ", '\n') )
 	}
   
@@ -17,10 +18,12 @@ find_col2<-function(DataSet, index_id ){
   }
 }
 
+if( class(name_dataset) != "data.frame" ) { cat('Data set should be data.frame format' , '\n') }
+
 ##----------------------------------------
 # find_col2()를 사용해 컬럼번호 찾기
 if(is.numeric(select_columns)==F) {select_columns<-find_col2(name_dataset, select_columns) }
-
+##----------------------------------------
   
   tmp<-(name_dataset[select_columns])
   if( (sum(tmp<0) >0 ) |( sum(tmp<1 & tmp>0) >0 ) ) {
