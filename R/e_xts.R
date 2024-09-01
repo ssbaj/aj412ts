@@ -3,7 +3,8 @@
 
 e_xts<-function(explaining=0){
 if(explaining==0) {
-cat('\014')
+cat(" ", '\n')
+cat(" ", '\n')
 cat("\033[1;31m# xts로 Ecos자료를 그래프로 그려보기 ----------------- \033[0m ", '\n')
 cat(" ", '\n')
 cat(" library(ecos); library(xts); library(aj412s); library(aj412ts)  ", '\n')
