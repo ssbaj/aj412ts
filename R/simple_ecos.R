@@ -1,20 +1,21 @@
-simple_ecos<-function(ecos_dataset, start_year, cycle=1 ){
+simple_ecos <- function(ecos_dataset, start_year, end_year="9999"){
 
 if (base::missing(ecos_dataset)) {
-	  cat("  Data는 순수한 numeric이고 ts지정은 않함 ", '\n')
-      cat("  ECOS자료에서 원하는 연도부터 자료 추출 / YoY첨부 ", '\n')
-	  cat("  2018년 부터 시작하는 자료만 남길 경우 ", '\n')
+	  cat("  Data는 순수한 numeric이면 충분함. ts지정은 할 필요 없음 ", '\n')
+      cat("  ECOS자료에서 원하는 연도부터 자료 추출 / YoY자료가 자동 첨부됨 ", '\n')
 	  cat("  Monthly/Quarterly/Yearly자료는 자동인식함", '\n')
-	  return( cat("  Adata<-simple_ecos(gdp, '2018') ", '\n') )
+	  cat("  예제1: 2018년 부터 시작하는 자료만 남길 경우 ", '\n')
+	  cat("         Adata<-simple_ecos(gdp, '2018') ", '\n')
+	  cat("  예제1: 2018년~2020년 자료만 남길 경우 ", '\n')
+	  return( cat("       Adata<-simple_ecos(gdp, '2018', '2020') ", '\n') )
 	}
+
+
+## simple_ecos2 function START ------------------
+simple_ecos2<-function(ecos_dataset, start_year, cycle=1 ){
 
 ## mkdate_series()함수 -------------------------
 mkdate_series<-function(df, start_y, start_m, mq ){
-
-if (base::missing(df)) {
-	    cat("  df<-as.data.frame(df) ", '\n')
-		cat("  Input date format: 연도=2015, 시작 월=5, 월별자료=12 or 분기별자료=4  ", '\n')
-		return(cat("  df<-mkdate_series(df, 2015, 5, 12)   ") )  }
 
 df<-as.data.frame(df)
 n<-nrow(df)
@@ -123,14 +124,9 @@ colnames(df)<-c('time', 'data')
 ## yoy의 계산
 yoy <- diff(df$data, lag = cycle)
 
-## percent of yoy의 계산
-tmp<-na.omit(lag(df$data, cycle))
-yoy_pct<-yoy/tmp*100
-
 yNA<-rep(NA, cycle)
 yoy<-c(yNA, yoy)
-yoy_pct<-c(yNA, yoy_pct)
-df<-cbind(df, yoy, yoy_pct)
+df<-cbind(df, yoy)
 
 start_year<-as.numeric(start_year)
 
@@ -149,5 +145,35 @@ if(cycle==1) {
    }
 
    return(df)
+}
+
+## simple_ecos2 function END --------------------
+
+if(end_year=="9999") {
+final_df1 <- simple_ecos2(ecos_dataset, start_year, cycle=1 )
+return(final_df1)
+}
+
+
+if(end_year!="9999") {
+tmp_df2 <- simple_ecos2(ecos_dataset, start_year )
+ncount<-nrow(tmp_df2)
+
+end_year <- as.numeric(end_year)
+end_year <- end_year + 1
+end_year <- as.character(end_year)
+
+for(i in 1:ncount){
+tmp_time<-as.character(substring(tmp_df2$time[i], 1, 4))
+if(tmp_time == end_year) {
+  nx_endyear<-i
+  break }
+}
+
+final_df2<-tmp_df2[c(1:(nx_endyear-1)), ]
+return(final_df2)
+}
+
+
 }
 

@@ -8,6 +8,12 @@ simple_ecos()
 make ecos data simple
 }
 \examples{
-simple_ecos(data_set, '시작연도')
-Example:  simple_ecos(data_set, '2018')
+Data는 순수한 numeric이고 ts지정은 않함  
+  ECOS자료에서 원하는 연도부터 자료 추출 / YoY자료가 자동 첨부됨  
+  Monthly/Quarterly/Yearly자료는 자동인식함 
+  예제1: 2018년 부터 시작하는 자료만 남길 경우  
+         Adata<-simple_ecos(gdp, '2018')  
+  예제1: 2018년~2020년 자료만 남길 경우  
+       Adata<-simple_ecos(gdp, '2018', '2020')
+	   
 }
