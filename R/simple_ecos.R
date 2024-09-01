@@ -113,6 +113,8 @@ if(tmp_time == "") {
   break }
 else if(tmp_time == "0") {
   cycle<-12; break }
+else if(tmp_time == "1") {
+  cycle<-12; break }
 else if(tmp_time == "Q") {
   cycle<-4; break }
   }
