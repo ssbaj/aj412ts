@@ -33,7 +33,7 @@ cat(" 전산업생산지수 <- statSearch(stat_code='901Y033', item_code1='A00',
 cat("  ", '\n')
 cat("\033[1;31m전산업생산지수를 xts 그래프로 보기 ----------- \033[0m ", '\n')
 cat(" 전산업생산지수 <- simple_ecos(전산업생산지수, '2015') ", '\n')
-cat("\033[1;32m# simple_ecos()을 사용하면 데이터셋의 data가 전산업생산지수. yoy, %yoy도 데이터셋에 저장됨 \033[0m ", '\n')
+cat("\033[1;32m# simple_ecos()을 사용하면 데이터셋의 data가 전산업생산지수. yoy도 데이터셋에 저장됨 \033[0m ", '\n')
 cat(" tmp_data <- xts(전산업생산지수$data, order.by=전산업생산지수$DATE) ", '\n')
 cat(" plot(tmp_data, main = '월별자료', col = 'blue') ", '\n')
 cat("\033[1;31m전산업생산지수를 ggplot2 그래프로 보기 ----------- \033[0m ", '\n')
