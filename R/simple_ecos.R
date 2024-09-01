@@ -100,6 +100,9 @@ df<-as.data.frame(ecos_dataset)
 df <- df %>% select("time","data_value")
 n<-nrow(df)
 
+## First period time 
+cat("First period:", df$time[1], '\n')
+
 for(i in 1:n){
 tmp_time<-as.character(substring(df$time[i], 1, 4))
 if(tmp_time == start_year) {
