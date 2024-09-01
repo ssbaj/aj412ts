@@ -6,7 +6,7 @@ if(explaining==0) {
 cat('\014')
 cat("\033[1;31m# xts로 Ecos자료를 그래프로 그려보기 ----------------- \033[0m ", '\n')
 cat(" ", '\n')
-cat(" library(ecos); library(xts); library(aj412ts)  ", '\n')
+cat(" library(ecos); library(xts); library(aj412s); library(aj412ts)  ", '\n')
 cat(" ecos.setKey(api_key = 'PDAG09WELCA88XHMB9IJ1RNMGX') ", '\n')
 cat(" gdp <- statSearch(stat_code='200Y004', item_code1='1400', cycle='Q')    ", '\n')
 cat(" ", '\n')
