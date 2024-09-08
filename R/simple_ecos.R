@@ -14,8 +14,18 @@ if (base::missing(ecos_dataset)) {
 ## simple_ecos2 function START ------------------
 simple_ecos2<-function(ecos_dataset, start_year, cycle=1 ){
 
-## mkdate_series()함수 -------------------------
+## ---------------------------------------------------------------
+## mkdate_series()함수 -------------------------------------------
 mkdate_series<-function(df, start_y, start_m=0, mq=0 ){
+
+if (base::missing(df)) {
+	    cat("  df<-as.data.frame(df) ", '\n')
+		cat("  Input: 연도=2015, start_m=11 / start_m=0(Yearly DATA),", '\n')
+		cat("                    연간자료: mq=0 / 분기별자료: mq=4 / 월별자료: mq=12 ", '\n')
+		cat("  YEAR: df<-mkdate_series(df, 2015)   ", '\n')
+		cat("  Quarter: df<-mkdate_series(df, 2015, start_m=3/6/9/12, mq=4)   ", '\n')
+		return( cat("  df<-mkdate_series(df, 시작연도:2015, 시작달:11, 월자료:12)   ", '\n') )  
+		}
 
 df<-as.data.frame(df)
 n<-nrow(df)
@@ -49,7 +59,6 @@ tmp2[i]<-paste0('0', tmp2[i], sep='')
 }
 
 ## monthly data END ----------------
-
 
 # quarterly data START --------------------------
 
@@ -114,8 +123,8 @@ return(df)
 }
 
 
-## mkdate_series() 끝 --------------------------
-
+## mkdate_series() 끝 --------------------------------------------
+## ----------------------------------------------------------------
 
 if(class(start_year)=="numeric") {
   cat("Start year should be character format such as '2018' ", '\n')
@@ -126,7 +135,6 @@ if (!require(dplyr)) {
     cat('Installing dplyr package','\n')
 	install.packages("dplyr")
   }
-
 
 suppressPackageStartupMessages(library("dplyr"))
 df<-as.data.frame(ecos_dataset)
@@ -143,18 +151,18 @@ if(tmp_time == start_year) {
   nx<-i; break }
   }
 
+
 ## Yearly/Quarterly/Monthly데이터를 인식하는 코드
-for(i in 1:2){
 tmp_time<-as.character(substring(df$time[i], 5, 5))
 if(tmp_time == "") {
-  break }
+  cycle<-1 }
 else if(tmp_time == "0") {
-  cycle<-12; break }
+  cycle<-12; start_m=as.numeric(substring(df$time[i], 6, 6)) }
 else if(tmp_time == "1") {
-  cycle<-12; break }
+  cycle<-12; start_m=as.numeric(substring(df$time[i], 5, 6)) }
 else if(tmp_time == "Q") {
-  cycle<-4; break }
-  }
+  cycle<-4; start_m=as.numeric(substring(df$time[i], 6, 6)); start_m=start_m*3}
+
 
 ## 원하는 연도부터 데이터를 추출하는 코드
 df<-df[c(nx:n), ]
@@ -170,13 +178,14 @@ df<-cbind(df, yoy)
 start_year<-as.numeric(start_year)
 
 if(cycle!=1) {
-  df<-mkdate_series(df, start_year, 1, cycle )
+  df<-mkdate_series(df, start_year, start_m, cycle )
   df<-df%>%relocate(DATE, .before='time')
   }
 
 if(cycle==1) {
   df$DATE<-NA
-  for (i in 1:n){
+  n2<-nrow(df)
+  for (i in 1:n2){
     df$DATE[i] <- paste0(df$time[i],'-12-31', sep='')
    }
    df<-df%>%relocate(DATE, .before='time')
