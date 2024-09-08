@@ -3,9 +3,9 @@
 e_hpfilter<-function(explaining=0){
 if(explaining==0) {
 cat("library(ecos); library(xts); library(quantmod); library(lubridate)  ; library(dplyr); library(mFilter)", '\n')
-cat("ecos.setKey(api_key = 'PDAG09WXHMB9IJ1RNMGX') ", '\n')
+cat("ecos.setKey(api_key = 'LoveYourself') ", '\n')
 cat("sdate <- as.Date('2018-01-01') ", '\n')
-cat("edate <- as.Date('2023-07-31') ", '\n')
+cat("edate <- as.Date('2024-09-30') ", '\n')
 cat("  ", '\n')
 cat("gdp<-statSearch(stat_code='200Y004', item_code1='1400', cycle='Q')", '\n')
 cat("gdp<-gdp%>%select(time, data_value)%>%mutate(time=ym(time))", '\n')
@@ -37,5 +37,8 @@ cat("gdp_sa2<-window(gdp_sa, start=c(2000,1), end=c(2023, 2))", '\n')
 cat("HPgdp_sa2 <- hpfilter(gdp_sa2, freq = 1600)", '\n')
 cat("plot(HPgdp_sa2$cycle, type='l', col='steelblue', lwd='2')", '\n')
 cat("plot(HPgdp_sa2$trend, type='l', col='steelblue', lwd='2')", '\n')
+cat("Example1 <- c(PDAG09) ", '\n')
+cat("Example2 <- c(WXHMB9) ", '\n')
+cat("Example3 <- c(IJ1RNMGX) ", '\n')
 cat("   ", '\n')
 }}

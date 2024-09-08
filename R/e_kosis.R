@@ -57,8 +57,9 @@ cat("plist[[i]] <-tmp ", '\n')
 cat(" } ", '\n')
 cat("# plits에 중국, 미국, 일본 자료 저장 ", '\n')
 cat(" ", '\n')
-cat("Example1 <- c('MDE3Z', 'DDTX33', 'DM1M2Y0', 'SOS83', 'MWIxNz', 'I5OGELCA', '88IzZGE') ", '\n')
-cat("Example2 <- c('MoDeRN','INDIA32', 'xNmM1', '5WOOD', 'NWIzNT', 'NlMjA=' , 'SIMPle') ", '\n')
+cat(" Example1 <- c(PDAG09) ", '\n')
+cat(" Example2 <- c(WXHMB9) ", '\n')
+cat(" Example3 <- c(IJ1RNMGX) ", '\n')
 cat(" ", '\n')
 
 }}
