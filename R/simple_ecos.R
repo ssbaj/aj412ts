@@ -196,6 +196,7 @@ if(cycle==1) {
 }
 
 ## simple_ecos2 function END --------------------
+## ----------------------------------------------
 
 if(end_year=="9999") {
 final_df1 <- simple_ecos2(ecos_dataset, start_year, cycle=1 )
