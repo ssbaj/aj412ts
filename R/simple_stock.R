@@ -1,10 +1,12 @@
 simple_stock<-function(stock_data){
 
 if (base::missing(stock_data)) {
-	  cat("  DATE는 as.Date로 자동 지정됨 ", '\n')
-      cat("  NA미싱데이터는 자동을 삭제됨 ", '\n')
-	  cat("  xtsdf <- xts(df$stockprice, order.by=df$DATE)  ", '\n')
-	  return( cat("       plot(xtsdata, col = 'blue') ", '\n') )
+	  cat("   ", '\n')
+	  cat("  df<-getSymbols('139270.KS', from=sdate, end=edate, auto.assign=F) ", '\n')
+      cat("  df2<-simple_stock(df) ", '\n')
+      cat("  df3<-xts(df2$stockprice, order.by=df2$DATE) ", '\n')
+      cat("  plot(df3) ", '\n')
+      return( cat("   ", '\n') )
 	}
 
 df<-stock_data
@@ -17,8 +19,12 @@ colnames(df)<-c('DATE', 'stockprice')
 df$stockreturn<-aj412s::percent_change(df$stockprice)
 n<-nrow(df)
 df<-df[(2:n), ]
-df<-mkindex(df)
+df<-aj412s::mkindex(df)
 rownames(df)<-df$INDEX
+
+xtsdata <- xts(df$stockprice, order.by=df$DATE)  
+plot(xtsdata)   
+
 return(df)
 }
 
