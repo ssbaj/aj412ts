@@ -171,9 +171,12 @@ colnames(df)<-c('time', 'data')
 ## yoy의 계산
 yoy <- diff(df$data, lag = cycle)
 
+## percent change의 계산
+percentchange <- aj412s::percent_change(df$data)
+
 yNA<-rep(NA, cycle)
 yoy<-c(yNA, yoy)
-df<-cbind(df, yoy)
+df<-cbind(df, yoy, percentChange)
 
 start_year<-as.numeric(start_year)
 
