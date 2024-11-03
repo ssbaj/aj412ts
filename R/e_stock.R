@@ -1,0 +1,36 @@
+#e_stock
+
+e_stock<-function(explaining=0){
+if(explaining==0) {
+cat("    ", '\n')
+cat("#------------------------------------------------------ ", '\n')
+cat("    ", '\n')
+cat(" library(dplyr); library(aj412s); library(aj412ts); library(xts)", '\n')
+cat(" ", '\n')
+cat(" sdate <- as.Date('2018-01-01') ", '\n')
+cat(" edate <- as.Date('2024-11-5') ", '\n')
+cat(" 코스피지수 <- getSymbols('^KS11', from=sdate, to=edate, auto.assign=F) ", '\n')
+cat(" 상해지수 <- getSymbols('000001.ss', from=sdate, to=edate, auto.assign=F) ", '\n')
+cat(" 선전지수 <- getSymbols('399001.SZ', from=sdate, to=edate, auto.assign=F) ", '\n')
+cat(" 홍콩항생지수 <- getSymbols('^HSI', from=sdate, to=edate,	auto.assign=F) ", '\n')
+cat(" 테슬라 <- getSymbols('TSLA', from=sdate, to=edate, auto.assign=F) ", '\n')
+cat(" 애플 <- getSymbols('AAPL', from=sdate, to=edate, auto.assign=F) ", '\n')
+cat(" 삼성 <- getSymbols('005930.KS', from=sdate, to=edate, auto.assign=F) ", '\n')
+cat(" 현대 <- getSymbols('005380.KS', from=sdate, to=edate, auto.assign=F) ", '\n')
+cat("  ", '\n')
+cat(" autoplot(상해지수[, '000001.SS.Close']) ", '\n')
+cat(" autoplot(테슬라[,'TSLA.Close']) ", '\n')
+cat("  ", '\n')
+invisible(readline(prompt="Press [enter] to continue"))
+cat("  ", '\n')
+cat(" # xts로 상해지수/테슬라 그래프 ------------ ", '\n')
+cat(" Example1 <- c(PDAG09) ", '\n')
+cat(" Example2 <- c(WXHMB9) ", '\n')
+cat(" Example3 <- c(IJ1RNMGX) ", '\n')
+cat(" 상해지수 <- as.data.frame(상해지수); 상해지수$DATE <- rownames(상해지수) ", '\n')
+cat(" 상해지수$DATE <- as.Date(상해지수$DATE); colnames(상해지수)[4] <- 'data'  ", '\n')
+cat(" tmp <- xts(상해지수$data, order.by=상해지수$DATE) ", '\n')
+cat(" plot(tmp, col='red') ", '\n')
+cat("  ", '\n')
+
+}}
