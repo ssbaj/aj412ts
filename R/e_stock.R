@@ -5,7 +5,7 @@ if(explaining==0) {
 cat("    ", '\n')
 cat("#------------------------------------------------------ ", '\n')
 cat("    ", '\n')
-cat(" library(dplyr); library(aj412s); library(aj412ts); library(xts)", '\n')
+cat(" library(dplyr); library(aj412s); library(aj412ts); library(xts); library(quantmod) ", '\n')
 cat(" ", '\n')
 cat(" sdate <- as.Date('2018-01-01') ", '\n')
 cat(" edate <- as.Date('2024-11-5') ", '\n')
