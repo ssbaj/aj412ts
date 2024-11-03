@@ -176,7 +176,7 @@ percentchange <- aj412s::percent_change(df$data)
 
 yNA<-rep(NA, cycle)
 yoy<-c(yNA, yoy)
-df<-cbind(df, yoy, percentChange)
+df<-cbind(df, yoy, percentchange)
 
 start_year<-as.numeric(start_year)
 
