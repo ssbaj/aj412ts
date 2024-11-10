@@ -9,7 +9,7 @@ cat("\033[1;31m# xts로 Ecos자료를 그래프로 그려보기 ----------------
 cat(" ", '\n')
 cat(" library(ecos); library(xts); library(aj412s); library(aj412ts)  ", '\n')
 cat(" ecos.setKey(api_key = '') ", '\n')
-cat(" set_data<-c('PDAG09WELCA88XHMB9IJ1RNMGX') ")
+cat(" set_data<-c('PDAG09WELCA88XHMB9IJ1RNMGX') ", '\n')
 cat(" gdp <- statSearch(stat_code='200Y004', item_code1='1400', cycle='Q')    ", '\n')
 cat(" ", '\n')
 cat("\033[1;31m df<-simple_ecos(ecos자료, '시작연도', '끝연도' )  \033[0m ", '\n')
