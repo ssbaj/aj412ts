@@ -40,7 +40,7 @@ cat("hp_gdp$cycle <- as.numeric(hp_gdp$cycle)", '\n')
 cat("hp_gdp$pc <- (hp_gdp$trend - dplyr::lag(hp_gdp$trend) ) / dplyr::lag(hp_gdp$trend)", '\n')
 cat("hp_gdp <- hp_gdp[-c(1), ]", '\n')
 cat("plot(hp_gdp$DATE, hp_gdp$cycle, type='l', lty='twodash', col='steelblue', lwd='2') ", '\n')
-cat("plot(hp_gdp$DATE, hp_gdp$trend, type='l', lty='twodash', col='salmon3', lwd='2') ", '\n')
+cat("plot(hp_gdp$DATE, hp_gdp$trend, type='l', lty='dashed', col='salmon3', lwd='2') ", '\n')
 cat("plot(hp_gdp$DATE, hp_gdp$pc, type='l', lty='solid', col='black', lwd='2') ", '\n')
 cat("   ", '\n')
 }}
