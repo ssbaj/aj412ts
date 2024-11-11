@@ -1,4 +1,4 @@
-e_rollapply<-function(explaining=0){
+e_BETA<-function(explaining=0){
 if(explaining==0) {
 cat(" library(quantmod)", '\n')
 cat(" sdate <- as.Date('2015-01-05')", '\n')
@@ -14,7 +14,7 @@ cat(" R2 <- dailyReturn(Price2[,4])", '\n')
 cat(" R12 <- merge(R,R2)", '\n')
 cat(" ", '\n')
 cat(" # 50day BETA and 250day BETA ------------ ", '\n')
-cat(" Beta <- rollapply(R12,50, by.column = F,  function(x) lm(x[,2] ~ x[,1])[[1]][[2]] )", '\n')
-cat(" Beta <- rollapply(R12,250, by.column = F,  function(x) lm(x[,2] ~ x[,1])[[1]][[2]] )", '\n')
+cat(" Beta <- rollapply(R12, 50, by.column = F, function(x) lm(x[,2] ~ x[,1])[[1]][[2]] )", '\n')
+cat(" Beta <- rollapply(R12, 250, by.column = F, function(x) lm(x[,2] ~ x[,1])[[1]][[2]] )", '\n')
 cat(" plot(Beta)", '\n')
 }}

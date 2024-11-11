@@ -1,9 +1,9 @@
 e_api<-function(explaining=0){
 if(explaining==0) {
-cat("  *** API다운로드 받기  ", '\n')
-cat("  ---------------------------------------------------------------------------------  ", '\n')
-cat("  https://api.odcloud.kr/api/HousePriceTrendSvc/v1/getHousePriceIndex    ", '\n')
-cat("  ?   ", '\n')
+cat("  # *** data.go.kr API다운로드 받기  ", '\n')
+cat("  # ---------------------------------------------------------------------------------  ", '\n')
+cat("  # 주택가격 데이터 다운로드 받기    ", '\n')
+cat("  ", '\n')
 cat("  page=1&  ", '\n')
 cat("  perPage=10&  ", '\n')
 cat("  cond%5BREGION_CD%3A%3AEQ%5D=11000&  ", '\n')

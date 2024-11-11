@@ -1,11 +1,11 @@
-\name{e_rollapply}
-\alias{e_rollapply}
-\title{e_rollapply}
+\name{e_BETA}
+\alias{e_BETA}
+\title{e_BETA}
 \usage{
-e_rollapply()
+e_BETA()
 }
 \description{
-e_rollapply()
+e_BETA()
 }
 \examples{
 

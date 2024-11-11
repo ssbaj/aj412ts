@@ -1,14 +1,15 @@
-\name{e_api}
-\alias{e_api}
-\title{Download api data}
+\name{e_data.go.kr}
+\alias{e_data.go.kr}
+\title{Download data.go.kr data}
 \usage{
-e_api()
+e_data.go.kr()
 }
 \description{
-Download api data
+Download data.go.kr data
 }
 \examples{
 
+# 사이트 주소 예시 ---- 
 https://api.odcloud.kr/api/HousePriceTrendSvc/v1/getHousePriceIndex?page=1&perPage=10&cond%5BREGION_CD%3A%3AEQ%5D=11000&cond%5BRESEARCH_DATE%3A%3ALTE%5D=202202&cond%5BRESEARCH_DATE%3A%3AGTE%5D=202201&cond%5BAPT_TYPE%3A%3AEQ%5D=0&cond%5BTR_GBN%3A%3AEQ%5D=S&serviceKey=서비스키
 
 
@@ -16,7 +17,7 @@ rm(list=ls())
 library(knitr); library(XML); library(RCurl); library(jsonlite); 
 library(readsdmx); library(httr); library(tidyverse); library(lubridate)
 
-mykey <- "CTM1cWxs2WYkqUZWW4tsWoEf14rZzUtxdka%2FuulngzzVGSf7hUOCBgBn21F1iJD%2BCbLVbqdRPvQUUYsXbcLiCw%3D%3D"
+mykey <- " Input your api key  "
 
 reqURL<-"https://api.odcloud.kr/api/HousePriceTrendSvc/v1/getHousePriceIndex"
 
