@@ -1,11 +1,11 @@
-\name{e_data.go.kr}
-\alias{e_data.go.kr}
-\title{Download data.go.kr data}
+\name{e_datagokr}
+\alias{e_datagokr}
+\title{Download datagokr data}
 \usage{
-e_data.go.kr()
+e_datagokr()
 }
 \description{
-Download data.go.kr data
+Download datagokr data
 }
 \examples{
 

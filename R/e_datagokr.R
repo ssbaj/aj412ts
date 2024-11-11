@@ -1,4 +1,4 @@
-e_api<-function(explaining=0){
+datagokr<-function(explaining=0){
 if(explaining==0) {
 cat("  # *** data.go.kr API다운로드 받기  ", '\n')
 cat("  # ---------------------------------------------------------------------------------  ", '\n')
