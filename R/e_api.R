@@ -16,7 +16,7 @@ cat("  -------------------------------------------------------------------------
 cat("  library(knitr); library(XML); library(RCurl); library(jsonlite)   ", '\n')
 cat("  library(readsdmx); library(httr); library(tidyverse); library(lubridate)  ", '\n')
 cat("    ", '\n')
-cat("  mykey <- 'CTM1cWxs2WYkqUZWW4tsWoEf14rZzUtxdka%2FuulngzzVGSf7hUOCBgBn21F1iJD%2BCbLVbqdRPvQUUYsXbcLiCw%3D%3D'  ", '\n')
+cat("  mykey <- 'Aj412y88CTM1cWxs2WYkqUZWW4tsWoEf14rZzUtxdka%2FuulngzzAJ412y88VGSf7hUOCBgBn21F1iJD%2BCbLVbqdRPvQUUYsXbcLiCw%3D%3D'  ", '\n')
 cat("  reqURL<-'https://api.odcloud.kr/api/HousePriceTrendSvc/v1/getHousePriceIndex'  ", '\n')
 cat("  x<-c(11000, 41000, 28000, 26000, 27000, 29000, 30000, 31000, 36000, 42000, 43000, 44000, 45000, 46000, 47000, 48000, 50000)  ", '\n')
 cat("  plist<-list()  ", '\n')

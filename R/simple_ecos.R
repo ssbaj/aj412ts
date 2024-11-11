@@ -2,7 +2,7 @@ simple_ecos <- function(ecos_dataset, start_year, end_year="9999"){
 
 if (base::missing(ecos_dataset)) {
 	  cat("  Data는 순수한 numeric이면 충분함. ts지정은 할 필요 없음 ", '\n')
-      cat("  ECOS자료에서 원하는 연도부터 자료 추출 / YoY자료가 자동 첨부됨 ", '\n')
+      cat("  ECOS자료에서 원하는 연도부터 자료 추출 / QoQYoY자료가 자동 첨부됨 ", '\n')
 	  cat("  Monthly/Quarterly/Yearly자료는 자동인식함", '\n')
 	  cat("  예제1: 2018년 부터 시작하는 자료만 남길 경우 ", '\n')
 	  cat("         Adata<-simple_ecos(gdp, '2018') ", '\n')
@@ -132,11 +132,14 @@ if(class(start_year)=="numeric") {
   }
 
 if (!require(dplyr)) {
-    cat('Installing dplyr package','\n')
+    cat('Automatically Installing dplyr package because','\n')
+	cat('dplyr is necessary for this function','\n')
+	cat('If an error occurs, connect to the network','\n')
 	install.packages("dplyr")
   }
 
 suppressPackageStartupMessages(library("dplyr"))
+
 df<-as.data.frame(ecos_dataset)
 
 df <- df %>% select("time","data_value")
@@ -168,15 +171,15 @@ else if(tmp_time == "Q") {
 df<-df[c(nx:n), ]
 colnames(df)<-c('time', 'data')
 
-## yoy의 계산
-yoy <- diff(df$data, lag = cycle)
+## QoQYoY의 계산
+QoQYoY <- diff(df$data, lag = cycle)
 
 ## percent change의 계산
 percentchange <- aj412s::percent_change(df$data)
 
 yNA<-rep(NA, cycle)
-yoy<-c(yNA, yoy)
-df<-cbind(df, yoy, percentchange)
+QoQYoY<-c(yNA, QoQYoY)
+df<-cbind(df, QoQYoY, percentchange)
 
 start_year<-as.numeric(start_year)
 
