@@ -1,5 +1,4 @@
-uroot <- function(dataset_name , ... , nlag=4 , method=c("adf"), lag.short=TRUE, out=TRUE) {
-dataset_name<-as.data.frame(dataset_name)
+uroot <- function(dataset_name , ... , nlag=4 , method=c("adf"), lag.short=TRUE, output=TRUE) {
 
 if (base::missing(dataset_name)) {
             cat(' # How to use --------------------------   ', '\n')
@@ -16,7 +15,7 @@ if (base::missing(dataset_name)) {
   
   # find_col2함수 ----------------
   find_col2<-function(dataset_name, index_id ){
-    tmp_colnames<-names(dataset_name)
+    tmp_colnames<-colnames(dataset_name)
     n<-length(tmp_colnames) # DataSet의 총변수 갯수
     for(i in 1:n){
       if(index_id==tmp_colnames[i]) {return(as.numeric(i))}
@@ -25,6 +24,7 @@ if (base::missing(dataset_name)) {
   
   ##--------------------------------
   # 변수명을 읽는 함수
+  dataset_name<-as.data.frame(dataset_name)
   var_names <- as.character(substitute(list(...)))[-1]
   print(var_names)
   no_var_names<-length(var_names)
@@ -49,6 +49,6 @@ if (!require(aTSA)) {
   
 suppressPackageStartupMessages(library("aTSA"))
 
-return(stationary.test(x, method=method, nlag=nlag, lag.short=lag.short, out=out))
+return(stationary.test(x, method=method, nlag=nlag, lag.short=lag.short, output=output))
 }
 
