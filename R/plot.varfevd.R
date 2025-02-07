@@ -16,7 +16,7 @@ plot.varfevd  <-function (x, plot.type = c("multiple", "single"), names = NULL,
             names <- ynames[1]
         }
     }
-    nv <- length(names)
+    nv <- length(names) 
 #    op <- par(no.readonly = TRUE)
     ifelse(is.null(main), main <- paste("FEVD for", names), main <- rep(main,
         nv)[1:nv])
