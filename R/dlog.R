@@ -35,7 +35,8 @@ if (base::missing(x)) {
     
   if(tmp_k==0) {
   logx<-log(x)
-  return( c(NA, (logx[-1]-logx[-length(x)])) )
+# return( c(NA, (logx[-1]-logx[-length(x)])) )
+  return( (logx[-1]-logx[-length(x)]) )
   }
 
 } }
