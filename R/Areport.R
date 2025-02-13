@@ -1,58 +1,46 @@
-Areport<-function(Re2XX){
+Areport<-function(fit, digits=4){
 
-coef<-Re2XX$coef
-s.e<-(sqrt(diag(Re2XX$var.coef)))
-
-m<-length(coef)
-n<-length(s.e)
-
-r<-c()
-if(m !=n ) {
-for(i in 1:m)
-  {if(coef[i] != 0) {r<-c(r, coef[i])}
-   else next
-  }
-coef <- r
+generate_arima_report <- function(model) {
+  order <- arimaorder(model)
+  seasonal_order <- order[4:6]
+  sprintf("ARIMA(%d,%d,%d)(%d,%d,%d)[%d]", 
+          order[1], order[2], order[3], 
+          seasonal_order[1], seasonal_order[2], seasonal_order[3], 
+          frequency(model$x))
 }
 
+  coefs <- fit$coef
+  df_value <- length(fit$x) - length(coefs)
+  logLik_value <- logLik(fit)
+  
+  cat("\nDegree of Freedom:", df_value)
+  cat("\nCoefficient Estimates:\n")
+  print(coefs)
+  
+  cat("\nAIC:", AIC(fit))
+  cat("\nBIC:", BIC(fit))
+  cat("\nLog Likelihood:", logLik_value, "\n")
+    
+  r0=c();  r1=c();  r2=c(); r3=c()
+  n<-length(fit$coef)
+  
+  for(i in 1:n){
+    r0=c(r0, tmp$coef[i])
+    r1=c(r1, sqrt(tmp$var.coef[i,i]) )
+    tmp_r2 = tmp$coef[i]/sqrt(tmp$var.coef[i,i])
+    r2=c(r2, tmp_r2)
+    tmp_pr2 = round( ( 1- pt( abs( tmp_r2 ) , df_value ) ), 4)
+	r3=c(r3, tmp_pr2)
+  }
+tmp_df<-data.frame(rbind(r0, r1, r2, r3))
+rownames(tmp_df)[1]<-"Coeff"
+rownames(tmp_df)[2]<-"s.e"
+rownames(tmp_df)[3]<-"t-value"
+rownames(tmp_df)[4]<-"p-value"
 
-tmp<-base::summary(Re2XX)
 
-if(Re2XX[9]$call[1]=="arima()" ) { n_calc<-tmp$nobs}
+print(round(tmp_df, digits))
 
-if(Re2XX[9]$call[1]=="auto.arima()" ) { n_calc<-tmp$nobs}
-
-if(Re2XX[9]$call[1]=="Arima()" ) { n_calc<-tmp$nobs}
-
-if(Re2XX[9]$call[1]=="arimax()") {n_calc<-( length(Re2XX$residuals)-Re2XX$arma[6]-Re2XX$arma[7]*Re2XX$arma[5])  }
-
-
-df_value <- n_calc -length(coef)
-
-t_val <- coef/s.e
-p_val <-  round( ( 1- pt( abs( t_val ) , df_value ) ), 4)
-
-options(scipen=100)
-coeff<-as.data.frame(coef)
-s.e<-as.data.frame(s.e)
-t_value<-as.data.frame(t_val)
-p_value<-as.data.frame(p_val)
-temp<-cbind(coef, s.e , t_val, p_val)
-
-cat('\n')
-if(Re2XX[9]$call[1]=="auto.arima()" ) {print(Re2XX[9]$call[1:2]) } else { print(Re2XX[9]$call) }
-
-cat('\n')
-
-if(class(Re2XX$bic)=="numeric") { cat('Included observations for calculation: ', tmp$nobs , '\n') }
-else {cat('Included observations for calculation: ', n_calc , '\n')}
-
-cat('Number of Coefficients: ', length(coef),'\n')
-cat('Log-likelihood: ', Re2XX$loglik, '\n')
-cat('AIC: ', Re2XX$aic, '\n')
-if(class(Re2XX$bic)=="numeric") {cat('BIC: ', Re2XX$bic, '\n') }
-
-cat(' ', '\n')
-temp<-round(temp,4)
-print(temp)
+report <- generate_arima_report(fit)
+cat("\nSelected ARIMA Model: ", report, "\n")
 }
