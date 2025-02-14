@@ -3,7 +3,7 @@ Areport<-function(fit, digits=4){
 generate_arima_report <- function(model) {
   order <- arimaorder(model)
   seasonal_order <- order[4:6]
-  sprintf("ARIMA(%d,%d,%d)(%d,%d,%d)[%d]", 
+  sprintf("ARIMA(%g,%g,%g)(%g,%g,%g)[%g]", 
           order[1], order[2], order[3], 
           seasonal_order[1], seasonal_order[2], seasonal_order[3], 
           frequency(model$x))
@@ -25,9 +25,9 @@ generate_arima_report <- function(model) {
   n<-length(fit$coef)
   
   for(i in 1:n){
-    r0=c(r0, tmp$coef[i])
-    r1=c(r1, sqrt(tmp$var.coef[i,i]) )
-    tmp_r2 = tmp$coef[i]/sqrt(tmp$var.coef[i,i])
+    r0=c(r0, fit$coef[i])
+    r1=c(r1, sqrt(fit$var.coef[i,i]) )
+    tmp_r2 = fit$coef[i]/sqrt(fit$var.coef[i,i])
     r2=c(r2, tmp_r2)
     tmp_pr2 = round( ( 1- pt( abs( tmp_r2 ) , df_value ) ), 4)
 	r3=c(r3, tmp_pr2)
