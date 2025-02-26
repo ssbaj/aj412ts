@@ -10,6 +10,14 @@ if (base::missing(ecos_dataset)) {
 	  return( cat("       Adata<-simple_ecos(gdp, '2018', '2020') ", '\n') )
 	}
 
+if (!require(dplyr)) {
+    cat('Automatically Installing dplyr package because','\n')
+    cat('dplyr is necessary for this function','\n')
+    cat('If an error occurs, connect to the network','\n')
+    install.packages("dplyr")
+  }
+  
+suppressPackageStartupMessages(library("dplyr"))
 
 ## simple_ecos2 function START ------------------
 simple_ecos2<-function(ecos_dataset, start_year, cycle=1 ){
@@ -17,16 +25,6 @@ simple_ecos2<-function(ecos_dataset, start_year, cycle=1 ){
 ## ---------------------------------------------------------------
 ## mkdate_series()함수 -------------------------------------------
 mkdate_series<-function(df, start_y, start_m=0, mq=0 ){
-
-if (base::missing(df)) {
-	    cat("  df<-as.data.frame(df) ", '\n')
-		cat("  Input: 연도=2015, start_m=11 / start_m=0(Yearly DATA),", '\n')
-		cat("                    연간자료: mq=0 / 분기별자료: mq=4 / 월별자료: mq=12 ", '\n')
-		cat("  YEAR: df<-mkdate_series(df, 2015)   ", '\n')
-		cat("  Quarter: df<-mkdate_series(df, 2015, start_m=3/6/9/12, mq=4)   ", '\n')
-		return( cat("  df<-mkdate_series(df, 시작연도:2015, 시작달:11, 월자료:12)   ", '\n') )  
-		}
-
 df<-as.data.frame(df)
 n<-nrow(df)
 tmp1<-rep(NA,n)
@@ -141,8 +139,8 @@ if (!require(dplyr)) {
 suppressPackageStartupMessages(library("dplyr"))
 
 df<-as.data.frame(ecos_dataset)
+df <- subset(df, select=c('time', 'data_value'))
 
-df <- df %>% select("time","data_value")
 n<-nrow(df)
 
 ## First period time 
@@ -175,7 +173,10 @@ colnames(df)<-c('time', 'data')
 QoQYoY <- diff(df$data, lag = cycle)
 
 ## percent change의 계산
-percentchange <- aj412s::percent_change(df$data)
+percent_change <- function(x) {
+  c(NA, ( (x[-1]/x[-length(x)] ) -1) ) }
+
+percentchange <- percent_change(df$data)
 
 yNA<-rep(NA, cycle)
 QoQYoY<-c(yNA, QoQYoY)
