@@ -16,19 +16,18 @@ generate_arima_report <- function(model) {
 
 cat(' # fixed 옵션으로 에러가 발생하면 아래 명령문으로 p값을 구하세요 ', '\n')
 cat(" # p = 2*round( ( 1- pt( abs( \033[1;33mt값\033[0m ) , \033[1;33mDegree of Freedom\033[0m ) ), 4) ", '\n')
-  
+cat(" #------------------------------------- ", '\n')  
   coefs <- fit$coef
-  df_value <- length(fit$x) - length(coefs)
+  df_value <- fit$nobs - length(fit$coef)
   logLik_value <- logLik(fit)
   
-  cat("\nDegree of Freedom:", df_value)
-  cat("\nCoefficient Estimates:\n")
-  print(coefs)
-  
-  cat("\nAIC:", AIC(fit))
-  cat("\nBIC:", BIC(fit))
-  cat("\nLog Likelihood:", logLik_value, "\n")
-    
+  cat("  Number of Data for Analysis:", fit$nobs, '\n')
+  cat("  Degree of Freedom:", df_value, '\n')
+cat(" #------------------------------------- ", '\n')  
+  cat("  AIC:", AIC(fit), "\n")
+  cat("  BIC:", BIC(fit), "\n")
+  cat("  Log Likelihood:", logLik_value, "\n")
+cat(" #------------------------------------- ", '\n')  
   r0=c();  r1=c();  r2=c(); r3=c()
   tmp.se <-  sqrt( diag(fit$var.coef) )
   n<-length(fit$coef)
@@ -50,8 +49,8 @@ rownames(tmp_df)[3]<-"t-value"
 rownames(tmp_df)[4]<-"p-value"
 
 
-print(round(tmp_df, digits))
+print( round(tmp_df, digits))
 
 report <- generate_arima_report(fit)
-cat("\nSelected ARIMA Model: ", report, "\n")
+cat("Selected ARIMA Model: ", report, "\n")
 }
