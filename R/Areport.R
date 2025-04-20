@@ -1,8 +1,9 @@
-Areport<-function(fit, digits=4, fixed=NULL ){
+Areport<-function(fit, digits=4 ){
 
 if (base::missing(fit)) {
-	  cat("  사용법:  ", '\n')
-	  return( cat("       Areport(RESULT) ) ", '\n') )
+	  cat("  #사용법 -------  ", '\n')
+	  cat("       Areport(RESULT) ) ", '\n')
+	  return( cat("       Areport(RESULT, fixed=c(NA, 0, 1, NA ...) ) ", '\n') )
 	}
 
 generate_arima_report <- function(model) {
@@ -13,9 +14,7 @@ generate_arima_report <- function(model) {
           seasonal_order[1], seasonal_order[2], seasonal_order[3], 
           frequency(model$x))
 }
-
-cat(' # fixed 옵션으로 에러가 발생하면 아래 명령문으로 p값을 구하세요 ', '\n')
-cat(" # p = 2*round( ( 1- pt( abs( \033[1;33mt값\033[0m ) , \033[1;33mDegree of Freedom\033[0m ) ), 4) ", '\n')
+cat("  ", '\n')  
 cat(" #------------------------------------- ", '\n')  
   coefs <- fit$coef
   df_value <- fit$nobs - length(fit$coef)
@@ -29,8 +28,52 @@ cat(" #------------------------------------- ", '\n')
   cat("  Log Likelihood:", logLik_value, "\n")
 cat(" #------------------------------------- ", '\n')  
   r0=c();  r1=c();  r2=c(); r3=c()
-  tmp.se <-  sqrt( diag(fit$var.coef) )
   n<-length(fit$coef)
+
+## 명령문의 fixed 값을 솎아내는 코드 -----------
+if(!is.null(fit[["call"]]$fixed) ) {
+  fixed2<-formula(fit[["call"]]$fixed)
+  n_fixed2<-length(fixed2)
+  fixed<-rep(NA, n_fixed2)
+  for(k in 1:n_fixed2){
+    fixed[k]<-fixed2[[k]]
+    }
+}
+
+# fixed()옵션에 맞추 표준오차를 재정렬하는 코드 시작 --------------
+
+if( !is.null(fit[["call"]]$fixed) & length(fixed) !=0 ) {
+
+tmpSE22 <- sqrt( diag(fit$var.coef) )
+j<-0
+
+# 표본오차 값을 fixed에 맞춰 재배열하는 함수
+fill_XNOTE <- function(fixed, tmpSE22) {
+XNOTE <- numeric(length(fixed))  # XNOTE 변수를 생성
+  
+for (i in 1:length(fixed)) {
+    if (is.na(fixed[i])) {
+      j=j+1
+      XNOTE[i] <- tmpSE22[j]
+    } else {
+      XNOTE[i] <- 0
+    }
+  }
+  
+  return(XNOTE)
+ }
+
+tmp.se <- fill_XNOTE(fixed, tmpSE22)
+
+} else {
+
+tmp.se <- sqrt( diag(fit$var.coef) )
+
+}
+
+
+# fixed()옵션에 맞추 표준오차를 재정렬하는 코드 끝 ----------------
+
 
 for(i in 1:n){
     r0=c(r0, fit$coef[i])
