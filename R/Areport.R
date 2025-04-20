@@ -48,7 +48,7 @@ generate_arima_report <- function(model) {
     r1=c(r1, sqrt(fit$var.coef[i,i]) )
     tmp_r2 = fit$coef[i]/sqrt(fit$var.coef[i,i])
     r2=c(r2, tmp_r2)
-    tmp_pr2 = 2*round( ( 1- pt( abs( tmp_r2 ) , df_value ) ), 4)
+    tmp_pr2 = 2*round( ( 1- pt( abs( tmp_r2 ) , df_value ) ), digits)
 	r3=c(r3, tmp_pr2)
   }
 tmp_df<-data.frame(rbind(r0, r1, r2, r3))
