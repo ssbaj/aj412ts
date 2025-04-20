@@ -15,7 +15,7 @@ generate_arima_report <- function(model) {
 }
 
 cat(' # fixed 옵션으로 에러가 발생하면 아래 명령문으로 p값을 구하세요 ', '\n')
-cat(" # p = 2*round( ( 1- pt( abs( t값 ) , Degree of Freedom ) ), 4) ", '\n')
+cat(" # p = 2*round( ( 1- pt( abs( \033[1;33mt값\033[0m ) , \033[1;33mDegree of Freedom\033[0m ) ), 4) ", '\n')
   
   coefs <- fit$coef
   df_value <- length(fit$x) - length(coefs)
