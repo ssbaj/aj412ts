@@ -1,4 +1,22 @@
-Areport<-function(fit, digits=4){
+Areport<-function(fit, digits=4, fixed=NULL ){
+
+if (base::missing(fit)) {
+	  cat("  사용법:  ", '\n')
+          cat("  Areport(RESULT) ", '\n')
+          cat("  fixed로 제외하는 AR 또는, MA구조가 있다면 0으로 지정 하세요", '\n')
+	  return( cat("       Areport(RESULT, fixed=c(NA, 0, NA, ...) ) ", '\n') )
+	}
+
+
+n_fixed<-length(fixed)
+zero_fixed_i<-0
+
+if(n_fixed != 0 ){
+  for(m in 1:n_fixed){
+  if( !is.na(fixed[m] ) & fixed[m] == 0) {zero_fixed_i<-m}
+  }
+}
+
 
 generate_arima_report <- function(model) {
   order <- arimaorder(model)
@@ -25,11 +43,12 @@ generate_arima_report <- function(model) {
   n<-length(fit$coef)
   
   for(i in 1:n){
+    if(i==zero_fixed_i) {next} 
     r0=c(r0, fit$coef[i])
     r1=c(r1, sqrt(fit$var.coef[i,i]) )
     tmp_r2 = fit$coef[i]/sqrt(fit$var.coef[i,i])
     r2=c(r2, tmp_r2)
-    tmp_pr2 = round( ( 1- pt( abs( tmp_r2 ) , df_value ) ), 4)
+    tmp_pr2 = 2*round( ( 1- pt( abs( tmp_r2 ) , df_value ) ), 4)
 	r3=c(r3, tmp_pr2)
   }
 tmp_df<-data.frame(rbind(r0, r1, r2, r3))
