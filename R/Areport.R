@@ -30,27 +30,28 @@ cat(" #------------------------------------- ", '\n')
   r0=c();  r1=c();  r2=c(); r3=c()
   n<-length(fit$coef)
 
-## 명령문의 fixed 값을 솎아내는 코드 -----------
-if(!is.null(fit[["call"]]$fixed) ) {
+##  -----------
+if( !is.null(fit[["call"]]$fixed) ) {
   fixed2<-formula(fit[["call"]]$fixed)
   n_fixed2<-length(fixed2)
-  fixed<-rep(NA, n_fixed2)
+  fixed22<-rep(NA, n_fixed2)
   for(k in 1:n_fixed2){
-    fixed[k]<-fixed2[[k]]
+    fixed22[k]<-fixed2[[k]]
     }
 }
 
+
 # fixed()옵션에 맞추 표준오차를 재정렬하는 코드 시작 --------------
 
-if( !is.null(fit[["call"]]$fixed) & length(fixed) !=0 ) {
+if( !is.null(fit[["call"]]$fixed) ) {
 
 tmpSE22 <- sqrt( diag(fit$var.coef) )
 j<-0
 
 # 표본오차 값을 fixed에 맞춰 재배열하는 함수
+
 fill_XNOTE <- function(fixed, tmpSE22) {
 XNOTE <- numeric(length(fixed))  # XNOTE 변수를 생성
-  
 for (i in 1:length(fixed)) {
     if (is.na(fixed[i])) {
       j=j+1
@@ -63,13 +64,14 @@ for (i in 1:length(fixed)) {
   return(XNOTE)
  }
 
-tmp.se <- fill_XNOTE(fixed, tmpSE22)
+tmp.se <- fill_XNOTE(fixed22, tmpSE22)
 
 } else {
 
 tmp.se <- sqrt( diag(fit$var.coef) )
 
 }
+
 
 
 # fixed()옵션에 맞추 표준오차를 재정렬하는 코드 끝 ----------------
