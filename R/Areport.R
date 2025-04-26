@@ -15,13 +15,13 @@ generate_arima_report <- function(model) {
           frequency(model$x))
 }
 cat("  ", '\n')  
-cat(" #------------------------------------- ", '\n')  
+# cat(" #------------------------------------- ", '\n')  
   coefs <- fit$coef
   df_value <- fit$nobs - length(fit$coef)
   logLik_value <- logLik(fit)
   
-  cat("  Number of Data for Analysis:", fit$nobs, '\n')
-  cat("  Degree of Freedom:", df_value, '\n')
+# cat("  Number of Data for Analysis:", fit$nobs, '\n')
+# cat("  Degree of Freedom:", df_value, '\n')
 cat(" #------------------------------------- ", '\n')  
   cat("  AIC:", AIC(fit), "\n")
   cat("  BIC:", BIC(fit), "\n")
