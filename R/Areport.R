@@ -20,8 +20,8 @@ generate_arima_report <- function(model) {
   df_value <- fit$nobs - length(fit$coef)
   logLik_value <- logLik(fit)
 
-# cat("  Number of Data for Analysis:", fit$nobs, '\n')
-# cat("  Degree of Freedom:", df_value, '\n')
+cat("  차분을 적용한 유효 관측치 수:", fit$nobs, '\n')
+cat("  자유도(Degree of freedom):", df_value, '\n')
 cat(" #------------------------------------- ", '\n')  
   cat("  AIC:", AIC(fit), "\n")
   cat("  BIC:", BIC(fit), "\n")
