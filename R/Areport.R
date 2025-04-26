@@ -14,12 +14,12 @@ generate_arima_report <- function(model) {
           seasonal_order[1], seasonal_order[2], seasonal_order[3], 
           frequency(model$x))
 }
-cat("  ", '\n')  
+
 # cat(" #------------------------------------- ", '\n')  
   coefs <- fit$coef
   df_value <- fit$nobs - length(fit$coef)
   logLik_value <- logLik(fit)
-  
+
 # cat("  Number of Data for Analysis:", fit$nobs, '\n')
 # cat("  Degree of Freedom:", df_value, '\n')
 cat(" #------------------------------------- ", '\n')  
@@ -108,5 +108,6 @@ tmp_df <- data.frame( t(tmp_df) )
 print( round(tmp_df, digits))
 
 report <- generate_arima_report(fit)
+cat("  ", '\n')  
 cat("Selected ARIMA Model: ", report, "\n")
 }
