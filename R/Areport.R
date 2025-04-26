@@ -88,12 +88,13 @@ for(i in 1:n){
 
 
 tmp_df<-data.frame(rbind(r0, r1, r2, r3))
-rownames(tmp_df)[1]<-"Coeff"
-rownames(tmp_df)[2]<-"s.e"
-rownames(tmp_df)[3]<-"t-value"
-rownames(tmp_df)[4]<-"p-value"
+rownames(tmp_df)[1]<-"Coeff "
+rownames(tmp_df)[2]<-"Std.Err "
+rownames(tmp_df)[3]<-"t_values "
+rownames(tmp_df)[4]<-"p_values "
 
-## t값이 NaN이거나 Inf이면 변수 삭제----------------
+## fixed옵션을 사용할 경우 t값이 NaN이거나 Inf이면 변수 삭제----------------
+if( !is.null(fit[["call"]]$fixed) ) {
 ncol_record<-c()
 n<-ncol(tmp_df)
 
@@ -101,7 +102,11 @@ for(i in 1:n){
 if(tmp_df[3,i] == 'NaN' ) {ncol_record<-c(ncol_record, i) }
 }
 
+if(length(ncol_record) !=0 ){
 tmp_df<-tmp_df[, -ncol_record]
+}
+
+}
 
 tmp_df <- data.frame( t(tmp_df) )
 
@@ -110,4 +115,5 @@ print( round(tmp_df, digits))
 report <- generate_arima_report(fit)
 cat("  ", '\n')  
 cat("Selected ARIMA Model: ", report, "\n")
+cat("  ", '\n')  
 }
