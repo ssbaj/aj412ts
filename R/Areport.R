@@ -93,6 +93,17 @@ rownames(tmp_df)[2]<-"s.e"
 rownames(tmp_df)[3]<-"t-value"
 rownames(tmp_df)[4]<-"p-value"
 
+## t값이 NaN이거나 Inf이면 변수 삭제----------------
+ncol_record<-c()
+n<-ncol(tmp_df)
+
+for(i in 1:n){
+if(tmp_df[3,i] == 'NaN' ) {ncol_record<-c(ncol_record, i) }
+}
+
+tmp_df<-tmp_df[, -ncol_record]
+
+tmp_df <- data.frame( t(tmp_df) )
 
 print( round(tmp_df, digits))
 
