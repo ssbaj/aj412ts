@@ -82,7 +82,7 @@ for(i in 1:n){
     r1=c(r1, tmp.se[i])
     tmp_r2=fit$coef[i]/tmp.se[i]
     r2=c(r2, tmp_r2)
-    tmp_pr2 = 2*round( ( 1- pt( abs( tmp_r2 ) , df_value ) ), digits)
+    tmp_pr2 = 2*round( ( 1- pnorm( abs( tmp_r2 ) ) ), digits)
     r3=c(r3, tmp_pr2)
  }
 
@@ -90,7 +90,7 @@ for(i in 1:n){
 tmp_df<-data.frame(rbind(r0, r1, r2, r3))
 rownames(tmp_df)[1]<-"Coeff "
 rownames(tmp_df)[2]<-"Std.Err "
-rownames(tmp_df)[3]<-"t_values "
+rownames(tmp_df)[3]<-"z_values "
 rownames(tmp_df)[4]<-"p_values "
 
 ## fixed옵션을 사용할 경우 t값이 NaN이거나 Inf이면 변수 삭제----------------
