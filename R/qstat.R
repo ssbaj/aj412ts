@@ -8,7 +8,11 @@ qstat<-function(xdatas, lags=15){
 if (base::missing(xdatas)) {
 	 return(cat("  qstat(df, lags:You decide or blank:automatic_allocation ) "))}
 
-
+cat(" ", '\n')
+cat("\033[1;34m------------------------------------------------------- \033[0m ", '\n')
+cat('\033[1;34mQ.prob값이 0.05보다 크면 시계열은 Stationary시계열이다 \033[0m ', '\n')
+cat("\033[1;34m------------------------------------------------------- \033[0m ", '\n')
+cat(" ", '\n')
  tm_length<-length(xdatas)
  if(tm_length<=40) {lags<-round(tm_length*(2/3), 0)}
  else if(tm_length<=60) {lags<-round(tm_length*(1.2/2), 0)}
