@@ -11,7 +11,8 @@ Loading KOSIS data
 
 # KOSIS의 apkey 다운로드 받는 곳  
 # https://kosis.kr/openapi/  
-   
+  library(kosis) 
+  kosis.setKey(apiKey='당신의 API값을 입력하세요')
 # KOSIS자료 Code Book  
 # https://kosis.kr/openapi/devGuide/devGuide_0101List.do  
    
