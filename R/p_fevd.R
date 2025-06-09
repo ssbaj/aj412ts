@@ -5,8 +5,12 @@ p_fevd  <-function (x, plot.type = c("multiple", "single"), names = NULL,
 {
 
   if (base::missing(x)) {
-	 cat("  p_fevd(fevd(svarresult, n.ahead = 10 ), plot.type = 'multiple',  ", '\n')
-	 return(cat("  col=c( \033[1;33m변수가 4개라서 색도 4개...\033[0m '#4D1A3800','#4D1A3855', 22, 44)) "))}
+         cat("  \033[1;33mSteelBlue 색: mycols(0.27, 0.51, 0.8) \033[0m  ", '\n')
+         cat("  \033[1;33mSalmon 색: mycols(0.98, 0.5, 0.45) \033[0m  ", '\n')
+         cat("  \033[1;33mPurple 색: mycols(0.3, 0.05, 0.5) \033[0m  ", '\n')
+         cat("  \033[1;33mBrown 색: mycols(0.65, 0.32, 0.17) \033[0m  ", '\n')
+	 cat("    ", '\n')
+	 return(cat("p_fevd( fevd(\033[1;33mVAR 또는 SVAR결과\033[0m, n.ahead = 10 ), plot.type = 'multiple', col=c( \033[1;33m변수 갯수대로... \033[0m '#4D1A3800','#4D1A3855', 22, 44)) "))}
 
     K <- length(x)
     ynames <- names(x)
