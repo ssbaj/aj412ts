@@ -2,12 +2,13 @@
 
 e_sbreak<-function(explaining=0){
 if(explaining==0) {
-cat(" library(strucchange);library(changepoint); library(tidyverse); library(lubridate) ", '\n')
+cat(" library(strucchange);library(changepoint); library(tidyverse); library(dplyr) ", '\n')
 cat(" 			 ", '\n')
 cat(" 			 ", '\n')
 cat(" Result01 <- cpt.meanvar(Adata$growth, method = 'PELT')", '\n')
 cat(" plot(Result01, type = 'l', cpt.col = 'blue', xlab = 'Index', cpt.width = 4)", '\n')
-cat(" slice(cpts(Result01))", '\n')
+cat(" change_point_indices <- cpts(Result01)", '\n')
+cat(" df %>% slice(change_point_indices)", '\n')
 cat(" 			 ", '\n')
 cat(" Result02 <- cpt.mean(Adata$growth, penalty = 'BIC', method = 'PELT')", '\n')
 cat(" plot(Result02, type = 'l', cpt.col = 'blue', xlab = 'Index', cpt.width = 4)", '\n')
