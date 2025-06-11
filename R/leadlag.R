@@ -45,5 +45,21 @@ if (base::missing(x1)) {
     }
     x[i] <- xi
   }
+ 
+cat( "  ", "\n")
+cat("\033[1;33m#-------------------------  \033[0m ", '\n') 
+tmp<-x
+count_tmp<-0
+for(i in nlag:1){
+  count_tmp<-count_tmp+1
+  if(count_tmp==1) {
+    countmax<-i
+    cat( "##", tmp[countmax+1] , "\n")
+  }
+  NormalCount<-2*countmax-i+2
+  cat( "  ", tmp[i], " ", tmp[NormalCount] , "\n")
+}
+
+cat("\033[1;33m#-------------------------  \033[0m ", '\n') 
   return(x)
 }
