@@ -48,6 +48,9 @@ if (base::missing(x1)) {
  
 cat( "  ", "\n")
 cat("\033[1;33m#-------------------------  \033[0m ", '\n') 
+r0<-c()
+r1<-c()
+r2<-c()
 tmp<-x
 count_tmp<-0
 for(i in nlag:1){
@@ -58,7 +61,16 @@ for(i in nlag:1){
   }
   NormalCount<-2*countmax-i+2
   cat( "  ", tmp[i], " ", tmp[NormalCount] , "\n")
+  r1<-c(r1, tmp[i])
+  r2<-c(r2, tmp[NormalCount] )
+  r0<-c(r0, (NormalCount-countmax-1) )
 }
+
+cat("\033[1;33m#-------------------------  \033[0m ", '\n') 
+cat( " red : X(전변수)-Y(후변수) , blue : Y(후변수)-X(전변수) ", "\n")
+plot(r0, r1, type='l', col='red')
+par(new=T)
+plot(r0, r2, type='l', col='blue')
 
 cat("\033[1;33m#-------------------------  \033[0m ", '\n') 
   return(x)
