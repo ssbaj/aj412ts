@@ -74,7 +74,7 @@ cat( " Obs :", NofOBS , " / Lags :", nlag, " / Obs-Lags:", NofOBS-nlag, "\n")
 min_x <- min(x)
 max_x <- max(x)
 
-cat( "Minimum :", min_x , " / Maximum :", max_x, "\n")
+cat( " Minimum correlation:", min_x , " / Maximum correlation:", max_x, "\n")
 
 plot(r0, r1, type='l', col='red', ylim=c(min_x, max_x), lwd=c(2),  xlab = "Lag(Number of Observations Behind)", ylab = "상관계수", cex.lab = 1.5 )
 par(new=T)
