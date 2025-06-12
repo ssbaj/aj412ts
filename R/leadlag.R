@@ -8,6 +8,8 @@
 
 leadlag  <- function(x1,x2,nlag){
 
+NofOBS<-length(x1)
+
 if (base::missing(x1)) {
 	cat("\033[1;33m # ------------------------ \033[0m ", '\n')
 	cat(" X<-c(1,2,3,4,5,6,7,8,9) ", '\n') 
@@ -66,12 +68,26 @@ for(i in nlag:1){
   r0<-c(r0, (NormalCount-countmax-1) )
 }
 
-cat("\033[1;33m#-------------------------  \033[0m ", '\n') 
+cat("\033[1;33m#--------------------------------------------------------  \033[0m ", '\n') 
 cat( " red : X(전변수)-Y(후변수) , blue : Y(후변수)-X(전변수) ", "\n")
-plot(r0, r1, type='l', col='red')
-par(new=T)
-plot(r0, r2, type='l', col='blue')
+cat( " Obs :", NofOBS , " / Lags :", nlag, " / Obs-Lags:", NofOBS-nlag, "\n")
 
-cat("\033[1;33m#-------------------------  \033[0m ", '\n') 
+min_x <- min(x)
+max_x <- max(x)
+
+plot(r0, r1, type='l', col='red', ylim=c(min_x, max_x), lwd=c(2),  xlab = "Lag(Number of Observations Behind)", ylab = "상관계수", cex.lab = 1.5 )
+par(new=T)
+plot(r0, r2, type='l', col='blue', ylim=c(min_x, max_x), lwd=c(2),  xlab = "Lag(Number of Observations Behind)", ylab = "상관계수" , cex.lab = 1.5 )
+
+legend("topright", 
+       legend = c("전변수:후변수", "후변수:전변수"), 
+       col = c("red","blue"),       # 색상
+       lty = c(1, 1),               # 선 스타일: 실선, 점선
+       lwd = c(2, 2)               # 선 두께 동일
+  )
+
+grid(col = "lightgray", lty = "dotted", lwd = 1)
+
+cat("\033[1;33m#--------------------------------------------------------  \033[0m ", '\n') 
   return(x)
 }
