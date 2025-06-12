@@ -1,5 +1,7 @@
 e_sbreak<-function(explaining=0){
+
 if(explaining==0) {
+
 cat(" 			 ", '\n')
 cat(" library(aj412s2); library(aj412ts); library(svars) ", '\n')
 cat(" library(strucchange);library(changepoint); library(tidyverse) ", '\n')
@@ -24,4 +26,7 @@ cat(" cusum <- efp(growth ~ lag(growth), type = 'OLS-CUSUM', data = Adata)", '\n
 cat(" plot(cusum)", '\n')
 cat(" grid(col = 'lightgray', lty = 'dotted', lwd = 1)", '\n')
 cat(" 			 ", '\n')
-}}
+
+}
+
+}
