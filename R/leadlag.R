@@ -8,8 +8,6 @@
 
 leadlag  <- function(x1,x2,nlag){
 
-NofOBS<-length(x1)
-
 if (base::missing(x1)) {
 	cat("\033[1;33m # ------------------------ \033[0m ", '\n')
 	cat(" X<-c(1,2,3,4,5,6,7,8,9) ", '\n') 
@@ -34,6 +32,7 @@ if (base::missing(x1)) {
   # empty output matrix
   x <- rep(NaN,nlag*2+1)
   p <- x
+  NofOBS<-length(x1)
   # make index to get the correct lead and lag structure
   index <- seq(nlag,-(nlag),-1)
   
