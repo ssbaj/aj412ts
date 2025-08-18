@@ -20,5 +20,8 @@ cat("    ", '\n')
 cat("# 경제성장률(분기별 gdp) ------------- ", '\n')
 cat(" \033[1;32m 전년동기대비_GDP성장률 <- (gdp / dplyr::lag(gdp, 4) -1 )*100    \033[0m ", '\n')
 cat("    ", '\n')
-
+cat(" \033[1;34m# TS자료: 월 -> 분기: r<-aggregate(ir, nfrequency=4)/3  ", '\n')
+cat(" \033[1;34m# TS자료: 연 -> 분기: library(tempdisagg) ", '\n')
+cat(" \033[1;34m#                     td1<-td(cs~1, to='quarterly', converstion='last', method='denton-cholette') ", '\n')
+cat("    ", '\n')
 }}

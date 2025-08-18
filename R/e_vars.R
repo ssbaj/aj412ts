@@ -1,5 +1,10 @@
 e_vars<-function(explaining=0){
 if(explaining==0) {
+cat("    ", '\n')
+cat(" \033[1;34m# TS자료: 월 -> 분기: r<-aggregate(ir, nfrequency=4)/3  ", '\n')
+cat(" \033[1;34m# TS자료: 연 -> 분기: library(tempdisagg) ", '\n')
+cat(" \033[1;34m#                     td1<-td(cs~1, to='quarterly', converstion='last', method='denton-cholette') ", '\n')
+cat("    ", '\n')
 cat(" \033[1;34m# VECM vs. VAR ---------------- \033[0m", '\n')
 cat(" \033[1;34m# VAR에 사용되는 데이터는 ts지정 필요없음 \033[0m", '\n')
 cat(" \033[1;34m# VAR 변수 순서: 외생성이 크면 왼쪽, 내생성(다른 변수의 영향을 받음)이 크면 오른쪽  \033[0m", '\n')
