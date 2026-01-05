@@ -6,6 +6,17 @@ if (base::missing(fit)) {
 	  return( cat("       Areport(RESULT, fixed=c(NA, 0, 1, NA ...) ) ", '\n') )
 	}
 
+
+suppressWarnings(
+  suppressMessages(
+    if (!require(forecast, quietly = TRUE)) {
+      install.packages("forecast")
+      library(forecast)
+    }
+  )
+)
+
+
 generate_arima_report <- function(model) {
   order <- arimaorder(model)
   seasonal_order <- order[4:6]
