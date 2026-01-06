@@ -1,9 +1,9 @@
-#' ccgraph() Function
+#' ccff2() Function
 #' 
 #' This function makes CCF graph
 #' 
 
-ccgraph=function(x,y,lags=15){
+ccff2=function(x,y,lags=15){
 	n=length(x)
 	r=c()
 	for (k in 1:lags){r=c(r, cc(x,y,k)) }
