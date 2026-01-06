@@ -7,14 +7,18 @@ if (base::missing(fit)) {
 	}
 
 
-suppressWarnings(
-  suppressMessages(
-    if (!require(forecast, quietly = TRUE)) {
-      install.packages("forecast")
-      library(forecast)
-    }
-  )
-)
+if (!requireNamespace("forecast", quietly = TRUE)) {
+  # 패키지가 없을 경우 메시지 출력 후 실행 중단
+  cat("------------------------------------------------------------\n")
+  cat("에러: 'forecast' 패키지가 설치되어 있지 않습니다.\n")
+  cat("다음 명령어를 사용하여 먼저 설치해 주세요: install.packages('forecast')\n")
+  cat("------------------------------------------------------------\n")
+  stop("필수 패키지 미설치로 인해 작업을 중단합니다.")
+ }
+
+# 2. 패키지가 존재하면 조용히 로드
+# suppressMessages와 suppressWarnings를 사용하여 깔끔하게 실행합니다.
+suppressMessages(suppressWarnings(library(forecast)))
 
 
 generate_arima_report <- function(model) {
