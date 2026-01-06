@@ -1,12 +1,12 @@
-\name{ccff3}
-\alias{ccff3}
+\name{cc}
+\alias{cc}
 \title{Calc: ccf value}
 \usage{
-ccff3()
+cc()
 }
 \description{
 Calculating ccf values.
 }
 \examples{
-ccff3()
+cc()
 }

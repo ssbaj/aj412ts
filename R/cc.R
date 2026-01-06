@@ -1,8 +1,8 @@
-#' ccf() Function
+#' cc() Function
 #' 
 #' This function makes CCF graph
 #' 
-ccff3=function(x,y,k=1){
+cc=function(x,y,k=1){
                     n=length(x)
                     mx=mean(x); my=mean(y)
                     sx=sqrt(sum((x-mx)^2));

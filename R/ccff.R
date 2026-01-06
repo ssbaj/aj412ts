@@ -1,9 +1,9 @@
-#' ccff() Function
+#' cc() Function
 #' 
 #' This function makes CCF graph
 #' 
 
-ccff=function(x, y, lags=15 ) {
+cc=function(x, y, lags=15 ) {
     n=length(x)
     r1=c(); r2=c() ; r3=c()
     r0=cc(x,y,0)
