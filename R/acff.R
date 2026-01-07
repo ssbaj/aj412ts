@@ -4,6 +4,8 @@
 
 acff <- function(xdatas, lagsx = 15){
 
+  graphics.off()
+
   if (base::missing(xdatas)) {
     return(cat("  acff(x, lag numbers such as 20 or drop this option ) "))
   }

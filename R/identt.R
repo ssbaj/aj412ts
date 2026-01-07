@@ -6,6 +6,8 @@
 
 identt <- function(xdatas, lagx2 = 15){
 
+  graphics.off()
+
   if (base::missing(xdatas)) {
     return(cat("  identt(df, lag: You decide or blank: automatic_allocation ) "))
   }
