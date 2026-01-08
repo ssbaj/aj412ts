@@ -1,12 +1,14 @@
 \name{cc}
 \alias{cc}
-\title{Calc: ccf value}
+\title{Make ccf}
 \usage{
 cc()
 }
 \description{
-Calculating ccf values.
+Make ccf
 }
 \examples{
-cc()
+
+cc(x, y)
+
 }

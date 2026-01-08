@@ -6,7 +6,7 @@
 #' @return Values for the stochastic trend and the stationary cycle
 #' @examples
 
-leadlag  <- function(x1,x2,nlag){
+leadlag  <- function(x1, x2, nlag){
 
 if (base::missing(x1)) {
 	cat("\033[1;33m # ------------------------ \033[0m ", '\n')
