@@ -68,7 +68,7 @@ for(i in nlag:1){
 }
 
 cat("\033[1;33m#--------------------------------------------------------  \033[0m ", '\n') 
-cat( " red : X(전변수)-Y(후변수) , blue : Y(후변수)-X(전변수) ", "\n")
+cat( " red : X(선행)-Y(후행) , blue : Y(후행)-X(선행) ", "\n")
 cat( " Obs :", NofOBS , " / Lags :", nlag, " / Obs-Lags:", NofOBS-nlag, "\n")
 
 min_x <- min(x)
@@ -81,7 +81,7 @@ par(new=T)
 plot(r0, r2, type='l', col='blue', ylim=c(min_x, max_x), lwd=c(2),  xlab = "Lag(Number of Observations Behind)", ylab = "상관계수" , cex.lab = 1.5 )
 
 legend("topright", 
-       legend = c("전변수:후변수", "후변수:전변수"), 
+       legend = c("선행:후행", "후행:선행"), 
        col = c("red","blue"),       # 색상
        lty = c(1, 1),               # 선 스타일: 실선, 점선
        lwd = c(2, 2)               # 선 두께 동일
