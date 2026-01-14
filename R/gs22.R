@@ -1,17 +1,13 @@
-#' revised version of ggseasonplot
-#' 
 #' plotting seasonal plot
-#' 
-
 gs22 <- function (x, season.labels = NULL, year.labels = TRUE, year.labels.left = FALSE, 
     type = NULL, col = NULL, continuous = FALSE, polar = FALSE, 
     labelgap = 0.04, text.size = 3, ...) 
+{   # <--- 여기에 중괄호 시작! (이 위치가 중요합니다)
 
-if (base::missing(x)) {
-	 return(cat("  ggseasonplot(ts함수로 시간이 명시된 시계열자료) "))}
+    if (base::missing(x)) {
+         return(cat("  gs22(ts함수로 시간이 명시된 시계열자료) \n"))
+    }
 
-
-{
     if (!requireNamespace("ggplot2", quietly = TRUE)) {
         stop("ggplot2 is needed for this function to work. Install it via install.packages(\"ggplot2\")", 
             call. = FALSE)
@@ -159,7 +155,6 @@ if (base::missing(x)) {
         labels = labs,
         expand = ggplot2::expansion(mult = c(0.05, 0.15))) # 오른쪽 여백 확보
     
-    # --- [수정 완료]: ggAddExtras 대신 표준 ggplot 함수 사용 ---
     p <- p + ggplot2::labs(title = paste("Seasonal plot:", xname), 
                            x = xLab, 
                            y = NULL) +

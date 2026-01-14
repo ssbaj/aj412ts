@@ -8,5 +8,7 @@ gs22()
 Modifed program of ggesasonplot
 }
 \examples{
+
 gs22(ts로 시간이 지정된 시계열 자료)
+
 }
