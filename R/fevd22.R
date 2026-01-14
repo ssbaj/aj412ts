@@ -1,4 +1,4 @@
-p_fevd  <-function (x, plot.type = c("multiple", "single"), names = NULL,
+fevd22  <-function (x, plot.type = c("multiple", "single"), names = NULL,
     main = NULL, col = NULL, ylim = NULL, ylab = NULL, xlab = NULL,
     legend = NULL, names.arg = NULL, nc, mar = par("mar"), oma = par("oma"),
     addbars = 1, ...)
@@ -10,7 +10,7 @@ p_fevd  <-function (x, plot.type = c("multiple", "single"), names = NULL,
          cat("  \033[1;33mPurple 색: mycols(0.3, 0.05, 0.5) \033[0m  ", '\n')
          cat("  \033[1;33mBrown 색: mycols(0.65, 0.32, 0.17) \033[0m  ", '\n')
 	 cat("    ", '\n')
-	 return(cat("p_fevd( fevd(\033[1;33mVAR 또는 SVAR결과\033[0m, n.ahead = 10 ), plot.type = 'multiple', col=c( \033[1;33m변수 갯수대로... \033[0m '#4D1A3800','#4D1A3855', 22, 44)) "))}
+	 return(cat("  fevd22( fevd(\033[1;33mVAR 또는 SVAR결과\033[0m, n.ahead = 10 ), plot.type = 'multiple', col=c( \033[1;33m변수 갯수대로... \033[0m '#4D1A3800','#4D1A3855', 22, 44)) "))}
 
     K <- length(x)
     ynames <- names(x)
