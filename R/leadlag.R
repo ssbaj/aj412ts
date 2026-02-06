@@ -58,7 +58,8 @@ for(i in nlag:1){
   count_tmp<-count_tmp+1
   if(count_tmp==1) {
     countmax<-i
-    cat( "##", tmp[countmax+1] , "\n")
+    cat( "\033[1;31mNo lag:\033[0m",tmp[countmax+1] , "\n")
+        cat( "\033[1;31mX선행-Y후행 : Y후행-X선행 \033[0m" , "\n")
   }
   NormalCount<-2*countmax-i+2
   cat( "  ", tmp[i], " ", tmp[NormalCount] , "\n")

@@ -1,6 +1,14 @@
 ccff <- function(x, y, lag.max = 10) {
   # 1. CCF 계산 (데이터 추출용, 그래프는 아직 그리지 않음)
   # ts.intersect 등을 자동으로 처리해주는 R 내장 ccf 함수 활용
+
+    if (base::missing(x)) {
+      cat("   ", "\n")
+      cat("  \033[1;33mccff(x, y)\033[0m", "\n")
+      cat("  \033[1;33mcoff(x, y, lag.max=10)\033[0m", "\n")
+      return(cat("   \n"))
+    }
+
   out <- ccf(x, y, lag.max = lag.max, plot = FALSE, na.action = na.pass)
   
   # 2. 데이터 벡터화 (Lag와 Correlation 값 추출)
