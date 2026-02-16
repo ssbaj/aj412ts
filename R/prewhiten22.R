@@ -1,18 +1,13 @@
-prewhiten22 <- function (x, y, x.model = ar.res, ylab = "CCF", ...) 
+prewhiten22 <- function (x, y, x.model = ar.res, showxy = FALSE, ylab = "CCF", ...) 
 {
 if (base::missing(x)) {
-        cat("  TSA 패키지: Transfer function model을 위한 prewhiten 명령문 ----- ", '\n' )
-        cat("   ", '\n' )
-        cat("  set.seed(123) ", '\n' )
-        cat("  x = arima.sim(n = 200, list(ar = 0.7)) ", '\n' )
-        cat("  y = lag(x, 3) * 0.5 + rnorm(200, sd = 0.5) ", '\n' )
-	cat("  fit_x = arima(x, order = c(1, 0, 1))  ", '\n' )
-	cat('  prewhiten(x, y, x.model = fit_x) ', '\n' )
+        cat("  TSA 패키지: Transfer function model을 위한 prewhiten을 수정한 명령문 ----- ", '\n' )
+        cat("  fit_x = Arima(x, order=c(1,0,0) ) ", '\n' )
+	cat('  prewhiten22(x, y, x.model = fit_x) ', '\n' )
 	cat("      ", '\n' )
 	cat('  또는, eta1과 eta2를 구해 ccff(eta1, eta2)로 확인하려면 ... ', '\n' )
-	cat("  prewhiten_x <- fit_x$resid  ", '\n' )
-	cat('  prewhiten_y <- prewhiten(x, y, x.model = fit_x) ')
-	return(cat('  ccff(prewhiten_x, prewhiten_y) ')) }
+	cat("  prewhiten22(x, y, x.model = fit_x, showxy=TRUE)  ", '\n' )
+	return(cat('   ')) }
 
     filter.mod = function(x, model) {
         if (length(model$Delta) >= 1) 
@@ -37,8 +32,8 @@ if (base::missing(x)) {
         y = stats::filter(y, filter = c(1, -ar.res$ar), method = "convolution", 
             sides = 1)
     }
-    ccf.xy = ccff(x = x, y = y, na.action = na.omit, ylab = ylab, 
-        ...)
+    ccf.xy = ccff(x = x, y = y)
     invisible(list(ccf = ccf.xy, model = x.model))
-    return(y)
+    tmp.df<-cbind(x, y)
+    if(showxy==TRUE) {return(tmp.df)}
 }
