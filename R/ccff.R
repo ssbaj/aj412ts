@@ -45,6 +45,9 @@ ccff <- function(x, y, lag.max = 10) {
   # (2) 유의수준 점선 (빨간 점선, +/- 2/sqrt(n))
   ci <- 2 / sqrt(n)
   abline(v = c(-ci, ci), col = "red", lty = 2)
+
+  lag0_pos <- bp[which(lags == 0)]
+  abline(h = lag0_pos, col = "red", lty = 2, lwd = 1) # lty=1(실선), lwd=2(두께)
   
   # (3) [요청사항] 각각의 Lag에 해당되는 수평 Dotted Line
   # bp 변수에 저장된 y좌표를 사용하여 모든 막대 위치에 선을 그립니다.
