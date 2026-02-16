@@ -25,7 +25,8 @@ if (!require(aTSA)) {
   }
   
 suppressPackageStartupMessages(library("aTSA"))
-
+cat("\033[1;33m# p값이 0.05보다 크면 NON-Stationary → 차분 \033[0m", '\n')
+cat("\033[1;33m# 차분금지: 자체가 비율(ratio)인 자료 금리(%), 고령화비율(%), -경상수지 \033[0m", '\n')
 return(stationary.test(x, nlag=lag, method=method, lag.short=lag.short, output=output))
 }
 
