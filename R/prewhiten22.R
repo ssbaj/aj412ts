@@ -1,5 +1,12 @@
-prewhiten22 <- function (x, y, x.model, showxy = FALSE) 
+prewhiten22 <- function (x, y, x.model, lag.max=10, showxy = FALSE) 
 {
+
+   if (base::missing(x)) {
+        cat("    prewhiten22(x, y, fit_model)", "\n")
+	cat("    prewhiten22(x, y, fit_model, lag.max=20)", "\n")
+	return( cat("    tmp<-prewhiten22(x, y, fit_model, lax.max=10, showxy=TRUE)", "\n") )
+    }
+    
     # 1. x.model에서 필터 계수 추출
     # Arima 객체에서 ar, ma, sar, sma 계수를 가져옵니다.
     model_list <- x.model$model
@@ -35,7 +42,7 @@ prewhiten22 <- function (x, y, x.model, showxy = FALSE)
     final_y <- as.numeric(combined[, 2])
 
     # 그래프 그리기
-    ccf_result <- ccff(final_x, final_y)
+    ccf_result <- ccff(final_x, final_y, lag.max)
 
     if (showxy == TRUE) {
         return(combined)
