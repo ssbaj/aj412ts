@@ -9,6 +9,12 @@ if (base::missing(x)) {
 	cat("  prewhiten22(x, y, x.model = fit_x, showxy=TRUE)  ", '\n' )
 	return(cat('   ')) }
 
+if (!require(TSA)) {
+install.packages("TSA")
+}
+
+suppressPackageStartupMessages(library("TSA"))
+
     filter.mod = function(x, model) {
         if (length(model$Delta) >= 1) 
             x = stats::filter(x, filter = c(1, -model$Delta), 
