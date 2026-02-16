@@ -1,45 +1,45 @@
-prewhiten22 <- function (x, y, x.model = ar.res, showxy = FALSE, ylab = "CCF", ...) 
+prewhiten22 <- function (x, y, x.model, showxy = FALSE) 
 {
-if (base::missing(x)) {
-        cat("  TSA 패키지: Transfer function model을 위한 prewhiten을 수정한 명령문 ----- ", '\n' )
-        cat("  fit_x = Arima(x, order=c(1,0,0) ) ", '\n' )
-	cat('  prewhiten22(x, y, x.model = fit_x) ', '\n' )
-	cat("      ", '\n' )
-	cat('  또는, eta1과 eta2를 구해 ccff(eta1, eta2)로 확인하려면 ... ', '\n' )
-	cat("  prewhiten22(x, y, x.model = fit_x, showxy=TRUE)  ", '\n' )
-	return(cat('   ')) }
-
-if (!require(TSA)) {
-install.packages("TSA")
-}
-
-suppressPackageStartupMessages(library("TSA"))
-
-    filter.mod = function(x, model) {
-        if (length(model$Delta) >= 1) 
-            x = stats::filter(x, filter = c(1, -model$Delta), 
-                method = "convolution", sides = 1)
-        if (length(model$theta) >= 1 && any(model$theta != 0)) 
-            x = stats::filter(x, filter = -model$theta, method = "recursive", 
-                sides = 1)
-        if (length(model$phi) >= 1 && any(model$phi != 0)) 
-            x = stats::filter(x, filter = c(1, -model$phi), method = "convolution", 
-                sides = 1)
-        x
+    # 1. x.model에서 필터 계수 추출
+    # Arima 객체에서 ar, ma, sar, sma 계수를 가져옵니다.
+    model_list <- x.model$model
+    
+    # 2. x와 y를 동일한 필터로 거름 (Prewhitening)
+    # stats::filter는 결과를 ts 객체로 반환하며, 
+    # 여러 필터를 거치면 구조가 복잡해질 수 있어 확실히 정리해야 합니다.
+    
+    pw_filter <- function(data, mod) {
+        filtered <- data
+        # 차분(Delta) 처리
+        if (length(mod$Delta) >= 1) 
+            filtered <- stats::filter(filtered, filter = c(1, -mod$Delta), method = "convolution", sides = 1)
+        # AR(phi) 처리
+        if (length(mod$phi) >= 1 && any(mod$phi != 0)) 
+            filtered <- stats::filter(filtered, filter = c(1, -mod$phi), method = "convolution", sides = 1)
+        # MA(theta) 처리 (Recursive)
+        if (length(mod$theta) >= 1 && any(mod$theta != 0)) 
+            filtered <- stats::filter(filtered, filter = -mod$theta, method = "recursive", sides = 1)
+        return(filtered)
     }
-    if (!missing(x.model)) {
-        x = filter.mod(x, model = x.model$model)
-        y = filter.mod(y, model = x.model$model)
+
+    x_pw <- pw_filter(x, model_list)
+    y_pw <- pw_filter(y, model_list)
+
+    # 3. 중요: ts.intersect를 사용해 시점을 맞추고 NA 제거
+    # 여기서 데이터가 matrix 형태가 되는데, 이를 각각 분리해야 ccf 에러가 안 납니다.
+    combined <- ts.intersect(x_pw, y_pw)
+    
+    # 4. 일변량 벡터로 강제 변환하여 CCF 실행
+    # ccf(x, y)에서 x와 y는 반드시 '단일 열' 벡터여야 합니다.
+    final_x <- as.numeric(combined[, 1])
+    final_y <- as.numeric(combined[, 2])
+
+    # 그래프 그리기
+    ccf_result <- ccff(final_x, final_y)
+
+    if (showxy == TRUE) {
+        return(combined)
     }
-    else {
-        ar.res = ar.ols(x, ...)
-        x = stats::filter(x, filter = c(1, -ar.res$ar), method = "convolution", 
-            sides = 1)
-        y = stats::filter(y, filter = c(1, -ar.res$ar), method = "convolution", 
-            sides = 1)
-    }
-    ccf.xy = ccff(x = x, y = y)
-    invisible(list(ccf = ccf.xy, model = x.model))
-    tmp.df<-cbind(x, y)
-    if(showxy==TRUE) {return(tmp.df)}
+    
+    return(invisible(ccf_result))
 }
