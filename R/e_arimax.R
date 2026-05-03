@@ -2,6 +2,15 @@
 
 e_arimax<-function(explaining=0){
 if(explaining==0) {
+cat(" ", '\n')
+cat("\033[1;31m# 시계열 자료의 기간 변경 ----------------- \033[0m ", '\n')
+cat("  이중식. Chapter 7 and Chapter 5    ", '\n')
+cat("  내장명령문 aggregate를 이용한 시계열 자료의 변경: 월 -> 분기    ", '\n')
+cat("  TS자료: 월 -> 분기: r<-aggregate(ir, nfrequency=4)/3    ", '\n')
+cat("  tempdisagg를 이용한 시계열 자료의 변경: 연 -> 분기    ", '\n')
+cat("  TS자료: 연 -> 분기: library(tempdisagg)   ", '\n')
+cat("                      td1<-td(cs~1, to='quarterly', converstion='last', method='denton-cholette')   ", '\n')
+cat(" ", '\n')
 cat(" library(TSA); library(astsa) # astsa = including lead command ", '\n')
 cat(" sales_140<-window(sales,end=140) ", '\n')
 cat(" lead_140<-window(lead,end=140) ", '\n')
